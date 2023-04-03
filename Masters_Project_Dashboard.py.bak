@@ -217,7 +217,7 @@ def create_barplot_cw(df4,rev_count42):
     st.header("Preferred Ship Mode")
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    rev_count2=df4.groupby(['Ship Mode']).count()['Order ID']
+    rev_count2=df4.groupby(['Ship Mode']).sum()['Sales']
     # rev_count42
     if rev_count42.empty==0:
         st.bar_chart(rev_count2)
