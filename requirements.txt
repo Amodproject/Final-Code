@@ -5,4 +5,4 @@ matplotlib
 datetime
 plotly
 streamlit-option-menu
-streamlit-cosine-similarity
+sklearn-metrics-pairwise
