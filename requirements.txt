@@ -4,5 +4,5 @@ numpy
 matplotlib
 datetime
 plotly
-option_menu
-cosine_similarity
+streamlit-option-menu
+streamlit-cosine-similarity
