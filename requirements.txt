@@ -1,8 +1,8 @@
 streamlit
 pandas
 numpy
-matplotlib.pyplot
+matplotlib
 datetime
-plotly.express
+plotly
 option_menu
 cosine_similarity
