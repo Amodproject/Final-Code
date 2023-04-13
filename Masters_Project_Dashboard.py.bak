@@ -54,10 +54,6 @@ if segment_list!=[]:
 if sub_cat_list!=[]:
     df_filtered = df_filtered[(df_filtered['Sub-Category'].isin(sub_cat_list))]
 
-comment='''Check if start and end date have values. If the exact input start/end date is not 
-in the data, it will increase the start date by 1 and decrease the end date by 1 
-to look for the next exact match for the input start/end dates'''
-
 if start_date!=[] and end_date!=[]:
     mask = (df_filtered['Order Date'] > start_date) & (df_filtered['Order Date'] <= end_date)
     df_filtered = df_filtered.loc[mask]
@@ -217,7 +213,7 @@ def create_barplot_cw(df4,rev_count42):
     st.header("Preferred Ship Mode")
     fig = plt.figure()
     ax = fig.add_subplot(1, 1, 1)
-    rev_count2=df4.groupby(['Ship Mode']).sum()['Sales']
+    rev_count2=df4.groupby(['Ship Mode']).count()['Order ID']
     # rev_count42
     if rev_count42.empty==0:
         st.bar_chart(rev_count2)
