@@ -7,6 +7,8 @@ import plotly.express as px
 from streamlit_option_menu import option_menu
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+
 comment='''Giving title to the page'''
 
 st.title('Sales Forecast Dashboard')

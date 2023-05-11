@@ -125,31 +125,31 @@ def create_piechart_Sales(df11,rev_count13,check):
                     ##TAB 2##
 #####################################################
 
-def createbundles(product_recs_df):
-    pivot_df = pd.pivot_table(df2,index = 'Customer ID',columns = 'Product Name',values = 'Sub-Category',aggfunc = 'count')
-    pivot_df.reset_index(inplace=True)
-    pivot_df = pivot_df.fillna(0)
-    pivot_df = pivot_df.drop('Customer ID', axis=1)
+def createbundles(product_recs):
+    pivot = pd.pivot_table(df2,index = 'Customer ID',columns = 'Product Name',values = 'Sub-Category',aggfunc = 'count')
+    pivot.reset_index(inplace=True)
+    pivot = pivot.fillna(0)
+    pivot = pivot.drop('Customer ID', axis=1)
 
     #Building co-relation matrix based on bundles
-    co_matrix = pivot_df.T.dot(pivot_df)
+    co_matrix = pivot.T.dot(pivot)
     np.fill_diagonal(co_matrix.values, 0)
 
     #calculating cosine similarity
-    cos_score_df = pd.DataFrame(cosine_similarity(co_matrix))
-    cos_score_df.index = co_matrix.index
-    cos_score_df.columns = np.array(co_matrix.index)
+    cos_score = pd.DataFrame(cosine_similarity(co_matrix))
+    cos_score.index = co_matrix.index
+    cos_score.columns = np.array(co_matrix.index)
 
     #Take top five scoring recs that aren't the original product
     product_recs = []
-    for i in cos_score_df.index:
-        product_recs.append(cos_score_df[cos_score_df.index!=i][i].sort_values(ascending = False)[0:2].index)
+    for i in cos_score.index:
+        product_recs.append(cos_score[cos_score.index!=i][i].sort_values(ascending = False)[0:2].index)
          
-    product_recs_df = pd.DataFrame(product_recs)
-    product_recs_df['recs_list'] = product_recs_df.values.tolist()
-    product_recs_df.index = cos_score_df.index
-    product_recs_df=product_recs_df.set_axis([ 'Recommendation 1', 'Recommendation 2','Recommendation List'], axis=1)
-    st.table(product_recs_df)
+    product_recs = pd.DataFrame(product_recs)
+    product_recs['recs_list'] = product_recs.values.tolist()
+    product_recs.index = cos_score.index
+    product_recs=product_recs.set_axis([ 'Recommendation 1', 'Recommendation 2','Recommendation List'], axis=1)
+    st.table(product_recs)
 
 #####################################################
                     ##TAB 3##
