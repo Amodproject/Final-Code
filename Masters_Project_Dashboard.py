@@ -31,7 +31,7 @@ comment='''Sort and reset data by date and removing 00:00:00 from date'''
 
 df1=df1.sort_values(by='Order Date')
 df1=df1.reset_index(drop=True)
-df1['Order Date'] = pd.to_datetime(df1['Order Date'], infer_datetime_format=True, errors='ignore').dt.date
+df1['Order Date'] = pd.to_datetime(df1['Order Date'], infer_datetime_format=True, errors='ignore',utc=False).dt.date
 
 
 comment='''Crete start and end date for filter'''
