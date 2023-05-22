@@ -7,6 +7,8 @@ import plotly.express as px
 from streamlit_option_menu import option_menu
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+
 comment='''Giving title to the page'''
 
 st.title('Sales Forecast Dashboard')
@@ -29,7 +31,8 @@ comment='''Sort and reset data by date and removing 00:00:00 from date'''
 
 df1=df1.sort_values(by='Order Date')
 df1=df1.reset_index(drop=True)
-df1['Order Date'] = pd.to_datetime(df1['Order Date'], errors='coerce').dt.date
+df1['Order Date'] = pd.to_datetime(df1['Order Date'], errors='coerce',infer_datetime_format=True, utc=True).dt.date
+
 
 comment='''Crete start and end date for filter'''
 
